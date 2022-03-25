@@ -1,11 +1,12 @@
 const bcrypt = require('bcrypt');
 const express = require('express');
 const exphbs = require('express-handlebars');
-const opath = require('path');
+const path = require('path');
 const session = require('express-session');
-const { urlencoded } = require('express');
+
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const sequelize = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,7 +18,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 // middleware
 app.use(express.json());
-app.use(urlencoded({extended:true}));
+app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 // setting up server to be synced with sequelize db
