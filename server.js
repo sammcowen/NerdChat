@@ -10,7 +10,7 @@ const helpers = require('./utils/helpers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({});
 // const sequelize = require()
 // setting up handlebars as the view engine for views folder
 app.engine('handlebars', hbs.engine);
