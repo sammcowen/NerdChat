@@ -6,5 +6,10 @@ body {
 header {
     background-color: #4ecdc4;
     color: #556270;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Shadows Into Light', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: 3px solid #c7f464;
 }
