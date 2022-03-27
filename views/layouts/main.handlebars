@@ -19,9 +19,15 @@
             <h1>NerdChat &#128187;</h1>
             <p>A place for nerds to share thoughts and opinions!</p>
             <nav>
+                {{#if loggedIn}}
                 <a href="/">Home</a>
                 <a href="/dashboard">DashBoard</a>
+                <a href="/dashboard/create">Create A Post </a>
+                <button id = "logout" type="button">Logout</button>
+                {{else}}
+                <a href="/">Home</a>
                 <a href="/login">Login</a>
+                {{/if}}
             </nav>
         </header>
     <main>
