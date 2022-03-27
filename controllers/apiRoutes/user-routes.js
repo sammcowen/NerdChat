@@ -21,13 +21,13 @@ router.get('/', (req,res) => {
       where: {
         email: req.body.email
       }
-    }).then(dbUserData => {
-      if (!dbUserData) {
+    }).then(userData => {
+      if (!userData) {
         res.status(400).json({ message: 'No user with that email address!' });
         return;
       }
   
-      const validPassword = dbUserData.checkPassword(req.body.password);
+      const validPassword = userData.checkPassword(req.body.password);
   
       if (!validPassword) {
         res.status(400).json({ message: 'Incorrect password!' });
@@ -36,13 +36,12 @@ router.get('/', (req,res) => {
   
       req.session.save(() => {
         // declare session variables
-        req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
-        req.session.twitter = dbUserData.twitter;
-        req.session.github = dbUserData.github;
+        req.session.user_id = userData.id;
+        req.session.username = userData.username;
+        req.session.email = userData.email;
         req.session.loggedIn = true;
   
-        res.json({ user: dbUserData, message: 'You are now logged in!' });
+        res.json({ user: userData, message: 'You are now logged in!' });
       });
     });
   });
