@@ -14,24 +14,22 @@ router.get('/', (req,res) => {
     });
 });
 // post route for creating a user 
-router.post('/', (req,res)=>{
-    User.create(
-      {
-        username:req.body.username,
-        email:req.body.email,
-        password:req.body.password
-      }
-    )
-})
-.then(userData => {
-  req.session.save(() =>{
-    req.session.user_id=userData.id;
-    req.session.username = userData.username;
-    req.session.email = userData.email,
-    req.session.password = userData.password;
-    req.session.loggedIn= true
-
-    res.json(userData);
+// POST /api/users
+router.post('/', (req, res) => {
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
+    
+  })
+  .then(userData => {
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.username = userData.username;
+      req.session.loggedIn = true;
+  
+      res.json(userData);
+    });
   });
 });
 // LOGIN ROUTE 
@@ -65,4 +63,4 @@ router.post('/', (req,res)=>{
       });
     });
   });
-module.exports = router;
+module.exports = router;  
