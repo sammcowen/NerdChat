@@ -20,12 +20,9 @@
             <p>A place for nerds to share thoughts and opinions!</p>
             <nav>
                 <a href="/">Home</a>
-                 {{#if loggedIn}}
                 <a href="/dashboard">DashBoard</a>
-                <button id = "logout" type="button">Logout</button>
-                {{else}}
                 <a href="/login">Login</a>
-                {{/if}}
+                 <button id = "logout" type="button" class="btn-no-style">Logout</button>
             </nav>
         </header>
     <main>
@@ -35,10 +32,8 @@
         Thanks for visiting ! Come Back Soon !
     </footer>
 
-    {{#if loggedIn}}
+    
     <script src="/javascript/logout.js"></script>
-    {{/if}}
-
 </body>
 
 </html>

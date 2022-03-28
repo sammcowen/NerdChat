@@ -85,22 +85,24 @@ router.post('/', (req, res) => {
 // LOGIN ROUTE FOR A USER 
 
 router.post('/login', (req, res) => {
+  console.log({body:req.body});
   User.findOne({
     where: {
-      email: req.body.email
+      email: req.body.email,
+
     }
   }).then(userData => {
-    if (!userData) {
-      res.status(400).json({ message: 'No user with that email address!' });
-      return;
-    }
+    // if (!userData) {
+      // res.status(400).json({ message: 'No user with that email address!' });
+      // return;
+    // }
 
     const validPassword = userData.checkPassword(req.body.password);
 
-    if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect password!' });
-      return;
-    }
+    // if (!validPassword) {
+      // res.status(400).json({ message: 'Incorrect password!' });
+      // return;
+    // }
 
     req.session.save(() => {
       // declare session variables
@@ -112,5 +114,17 @@ router.post('/login', (req, res) => {
     });
   });
 });
+// logout route
+router.post('/logout',(req,res) => {
+if(req.session.loggedIn) {
+  req.session.destroy(() =>{
+    res.status(204).end();
+  });
+}
+else {
+  res.status(404).end();
+}
+})
+
 
 module.exports = router;  
