@@ -1,8 +1,6 @@
 const router = require('express').Router();
-const req = require('express/lib/request');
-const { json } = require('express/lib/response');
-const {User} = require('../../models');
-const { post } = require('../home-routes');
+
+const {User, Post, Comment} = require('../../models');
 
 // GET API USERS    route
 router.get('/', (req,res) => {
@@ -67,4 +65,4 @@ router.post('/', (req,res)=>{
       });
     });
   });
-
+module.exports = router;
